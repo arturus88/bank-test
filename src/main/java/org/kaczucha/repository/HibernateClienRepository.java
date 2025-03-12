@@ -2,13 +2,14 @@ package org.kaczucha.repository;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.kaczucha.Client;
+import org.kaczucha.repository.entity.Client;
 
 public class HibernateClienRepository implements ClientRepository {
     @Override
     public void save(Client client) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        client.getAccounts().forEach(session::save);
         session.save(client);
         session.getTransaction().commit();
         session.close();

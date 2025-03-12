@@ -1,6 +1,6 @@
 package org.kaczucha.repository;
 //109
-import org.kaczucha.Client;
+import org.kaczucha.repository.entity.Client;
 
 import java.sql.*;
 
@@ -35,7 +35,7 @@ public class JDBCClientRepository implements ClientRepository {
             if(resultSet.next()){
                 final String name=resultSet.getString("FIRST_NAME");
                 final String mail=resultSet.getString("MAIL");
-                return new Client(name,mail,0);
+                return new Client(name,mail,null);
             }
             statement.execute();
         } catch (SQLException e) {
