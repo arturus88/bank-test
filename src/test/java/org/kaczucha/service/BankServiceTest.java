@@ -1,34 +1,26 @@
 package org.kaczucha.service;
 //156
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.kaczucha.repository.ClientRepository;
+import org.kaczucha.repository.ClientSpringJpaRepository;
 import org.kaczucha.repository.entity.Account;
 import org.kaczucha.repository.entity.Client;
-import org.kaczucha.repository.InMemoryClientRepository;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 import static java.util.Collections.*;
 import static org.mockito.Mockito.*;
 
 public class BankServiceTest {
     private BankService service;
-    private ClientRepository repository;
+    private ClientSpringJpaRepository repository;
 
 
     @BeforeEach
     public void setup() {
-        repository = mock(ClientRepository.class);
+        repository = mock(ClientSpringJpaRepository.class);
         service = new BankService(repository);
     }
-
     @Test
     public void transfer_allParamsOk_fundsTransferred() {
         //given
