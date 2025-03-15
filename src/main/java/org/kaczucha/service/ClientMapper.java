@@ -1,0 +1,32 @@
+package org.kaczucha.service;
+
+import org.kaczucha.controller.dto.ClientRequest;
+import org.kaczucha.controller.dto.ClientResponse;
+import org.kaczucha.repository.entity.Client;
+import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+@Component
+public class ClientMapper {
+    public ClientResponse map(Client client) {
+        return ClientResponse
+                .builder()
+                .id(client.getId())
+                .name(client.getName())
+                .email(client.getEmail())
+                .accounts(client
+                        .getAccounts()
+                        .stream()
+                        .map(account -> account.getId())
+                        .collect(Collectors.toList()))
+                .build();
+    }
+    public Client map(ClientRequest clientRequest){
+        return Client
+                .builder()
+                .email(clientRequest.getEmail())
+                .name(clientRequest.getName())
+                .build();
+    }
+
+}

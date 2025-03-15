@@ -19,7 +19,8 @@ public class BankServiceTest {
     @BeforeEach
     public void setup() {
         repository = mock(ClientSpringJpaRepository.class);
-        service = new BankService(repository);
+        ClientMapper mapper=mock(ClientMapper.class);
+        service = new BankService(repository,mapper);
     }
     @Test
     public void transfer_allParamsOk_fundsTransferred() {

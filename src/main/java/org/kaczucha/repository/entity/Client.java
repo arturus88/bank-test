@@ -9,6 +9,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "USERS")
+@Builder
+@AllArgsConstructor
 public class Client {
 
     @Id
