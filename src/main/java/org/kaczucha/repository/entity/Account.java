@@ -2,6 +2,7 @@ package org.kaczucha.repository.entity;
 //129
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "ACCOUNTS")
+@Builder
+@AllArgsConstructor
 public class Account {
     @Id
     @SequenceGenerator(name = "stu_seq", sequenceName = "ACCOUNTS_SEQ", allocationSize = 1)
@@ -19,9 +22,7 @@ public class Account {
     private double balance;
     @Column(name = "CURRENCY")
     private String currency;
+    @Column(name = "USER_ID")
+    private String user_id;
 
-    public Account(double balance, String currency) {
-        this.balance = balance;
-        this.currency = currency;
-    }
 }
